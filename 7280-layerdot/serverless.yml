@@ -1,0 +1,21 @@
+service: test
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-central-1
+
+package:
+  individually: true
+  exclude:
+    - layer/**
+    - functions/**
+    - node_modules/**
+    - package.json
+    - package-lock.json
+    - serverless.yml
+
+layers:
+  imagemagick:
+    name: imagemagick
+    path: layer/somelayer
