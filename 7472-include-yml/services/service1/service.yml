@@ -1,0 +1,37 @@
+package:
+  include:
+    - services/service1/src/**
+  exclude:
+    - ./**
+
+service: service1
+
+iamRoleStatements:
+  - Effect: "Allow"
+    Action:
+      - "dynamodb:Query"
+    Resource:
+      - Fn::Join:
+          - ""
+          - - ${self:custom.env.TABLE_NAME_PAGES}
+      - Fn::Join:
+          - ""
+          - - ${self:custom.env.TABLE_NAME_PAGES}
+            - "/index/*"
+
+functions:
+  getPageData:
+    handler: /services/service1/src/handler.handler
+    name:  ${self:service}-${opt:stage}-getPageData
+    memorySize: 128
+    environment:
+      TABLE_NAME: ${self:custom.env.TABLE_NAME_PAGES}
+      TABLE_REGION: ${self:custom.env.TABLE_REGION}
+    events:
+      # implementing GET requests to the end points /data of second service.
+      # note that we do not have base path PATH2 here since it is not requires as we
+      # are already in service of PATH2
+      - http:
+          method: get
+          path: service1/getPageData
+          cors: true
