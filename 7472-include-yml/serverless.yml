@@ -7,7 +7,7 @@ service: ${file(./services/${opt:service}/service.yml):service}
 plugins:
   - serverless-offline
   - serverless-mocha-plugin
-  -
+
 provider:
   name: aws
   runtime: nodejs12.x
