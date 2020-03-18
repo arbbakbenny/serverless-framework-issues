@@ -1,4 +1,4 @@
-package:
+package: # this doesn't works
   include:
     - services/service1/src/**
   exclude:

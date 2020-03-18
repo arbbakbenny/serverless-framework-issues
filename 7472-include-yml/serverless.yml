@@ -16,6 +16,12 @@ provider:
   iamRoleStatements: ${file(./services/${opt:service}/service.yml):iamRoleStatements, ""}
   role: ${file(./services/${opt:service}/service.yml):role, ""}
 
-package: ${file(./services/${opt:service}/service.yml):package}
+package: ${file(./services/${opt:service}/service.yml):package} # this doesn't work
+
+#package: # this works
+#  include:
+#    - services/service1/src/**
+#  exclude:
+#    - ./**
 
 functions: ${file(./services/${opt:service}/service.yml):functions}
