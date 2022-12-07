@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "dependencies": {},
   "devDependencies": {
-    "serverless": "^1.66.0",
+    "serverless": "^3.25.1",
     "serverless-mocha-plugin": "^1.11.0",
     "serverless-offline": "^6.0.0-alpha.68"
   }
